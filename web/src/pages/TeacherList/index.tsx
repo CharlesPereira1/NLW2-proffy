@@ -49,13 +49,15 @@ export default function TeacherList() {
           </p>
 
           <footer>
-            Preço/hora
-            <strong>R$ 59,90</strong>
+            <p>
+              Preço/hora
+              <strong>R$ 59,90</strong>
+            </p>
+            <button type="button">
+              <img src={whatsappIcon} alt="whatsapp" />
+              Entrar em contato
+            </button>
           </footer>
-          <button type="button">
-            <img src={whatsappIcon} alt="whatsapp" />
-            Entrar em contato
-          </button>
         </article>
       </main>
     </div>
