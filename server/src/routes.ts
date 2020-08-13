@@ -1,8 +1,13 @@
-import express, { Router } from "express";
+import express from "express";
 
-const app = express();
+const routes = express.Router();
 
-app.use(express.json());
-app.use(Router);
+routes.post("/classes", (request, response) => {
+  const data = request.body;
 
-app.listen(3333);
+  console.log(data);
+
+  return response.json(data);
+});
+
+export default routes;
