@@ -48,6 +48,8 @@ routes.post("/classes", async (request, response) => {
 
     return response.send();
   } catch (error) {
+    await trx.rollback();
+
     return response.status(400).json({
       error: "Unexpected error while creating new class.",
     });
