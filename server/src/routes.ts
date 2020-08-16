@@ -1,6 +1,6 @@
 import express from "express";
 import db from "./database/connection";
-import convertHoursToMinutes from "./database/utils/convertHoursToMinutes";
+import convertHoursToMinutes from "./utils/convertHoursToMinutes";
 
 const routes = express.Router();
 
@@ -46,7 +46,7 @@ routes.post("/classes", async (request, response) => {
 
     await trx.commit();
 
-    return response.send();
+    return response.status(201).send();
   } catch (error) {
     await trx.rollback();
 
