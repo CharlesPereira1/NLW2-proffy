@@ -8,6 +8,7 @@ import Select from "../../components/Select";
 import warningIcon from "../../assets/images/icons/warning.svg";
 
 import "./styles.css";
+import api from "../../services/api";
 
 export default function TeacherForm() {
   const [name, setName] = useState("");
@@ -42,6 +43,23 @@ export default function TeacherForm() {
 
   function handleCreateClass(e: FormEvent) {
     e.preventDefault();
+
+    api
+      .post("classes", {
+        name,
+        avatar,
+        whatsapp,
+        bio,
+        subject,
+        cost: Number(cost),
+        schedule: scheduleItems,
+      })
+      .then(() => {
+        alert("Cadastro realizado com sucesso.");
+      })
+      .catch(() => {
+        alert("Erro no cadastro!");
+      });
   }
 
   return (
@@ -133,10 +151,11 @@ export default function TeacherForm() {
 
             {scheduleItems.map((scheduleItem, index) => {
               return (
-                <div className="schedule-item">
+                <div key={scheduleItem.week_day} className="schedule-item">
                   <Select
                     name="week_day"
                     label="Dia da semana"
+                    value={scheduleItem.week_day}
                     onChange={(e) =>
                       setScheduleItemValue(index, "week_day", e.target.value)
                     }
@@ -155,6 +174,7 @@ export default function TeacherForm() {
                     name="from"
                     label="Das"
                     type="time"
+                    value={scheduleItem.from}
                     onChange={(e) =>
                       setScheduleItemValue(index, "from", e.target.value)
                     }
@@ -163,6 +183,7 @@ export default function TeacherForm() {
                     name="to"
                     label="Até"
                     type="time"
+                    value={scheduleItem.to}
                     onChange={(e) =>
                       setScheduleItemValue(index, "to", e.target.value)
                     }
