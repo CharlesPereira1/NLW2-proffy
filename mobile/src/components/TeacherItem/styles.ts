@@ -35,6 +35,13 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
 
+  subject: {
+    fontFamily: "Poppins_400Regular",
+    color: "#6a6180",
+    fontSize: 12,
+    marginTop: 4,
+  },
+
   bio: {
     marginHorizontal: 24,
     fontFamily: "Poppins_400Regular",
