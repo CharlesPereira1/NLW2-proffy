@@ -8,33 +8,39 @@ import whatsappIcon from "../../assets/images/icons/whatsapp.png";
 
 import styles from "./styles";
 
-function TeacherItem() {
+export interface Teacher {
+  id: number;
+  teacher: string;
+  avatar: string;
+  bio: string;
+  cost: number;
+  name: string;
+  subject: string;
+  whatsapp: string;
+}
+
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
-        <Image
-          style={styles.avatar}
-          source={{ uri: "https://github.com/charlespereira1.png" }}
-        />
+        <Image style={styles.avatar} source={{ uri: teacher.avatar }} />
 
         <View style={styles.profileInfo}>
-          <Text style={styles.name}>Charles Pereira</Text>
-          <Text style={styles.subject}>Física</Text>
+          <Text style={styles.name}>{teacher.name}</Text>
+          <Text style={styles.subject}>{teacher.subject}</Text>
         </View>
       </View>
 
-      <Text style={styles.bio}>
-        Entusiastas das melhores tecnologias de física avançada.
-        {"\n"}
-        {"\n"}
-        Apaixonado por imaginar que um dia irá conhecer a lua e que existe
-        buraco negro.
-      </Text>
+      <Text style={styles.bio}>{teacher.bio}</Text>
 
       <View style={styles.footer}>
         <Text style={styles.price}>
           Preço/hroa {"   "}
-          <Text style={styles.priceValue}>R$ 120,00</Text>
+          <Text style={styles.priceValue}>R$ {teacher.cost}</Text>
         </Text>
 
         <View style={styles.buttonContainer}>
@@ -51,6 +57,6 @@ function TeacherItem() {
       </View>
     </View>
   );
-}
+};
 
 export default TeacherItem;
