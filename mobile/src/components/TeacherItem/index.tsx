@@ -70,9 +70,15 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher, favorited }) => {
         </Text>
 
         <View style={styles.buttonContainer}>
-          <RectButton style={[styles.favoriteButton, styles.favorited]}>
-            {/* <Image source={heartOutLineIcon} /> */}
-            <Image source={unfavoriteIcon} />
+          <RectButton
+            onPress={handleToggleFavorite}
+            style={[styles.favoriteButton, isFavorited ? styles.favorited : {}]}
+          >
+            {isFavorited ? (
+              <Image source={unfavoriteIcon} />
+            ) : (
+              <Image source={heartOutLineIcon} />
+            )}
           </RectButton>
 
           <RectButton
