@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, ScrollView, Text, TextInput } from "react-native";
 import { BorderlessButton, RectButton } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
@@ -21,7 +21,7 @@ function TeacherList() {
   const [week_day, setWeek_day] = useState("");
   const [time, setTime] = useState("");
 
-  useState(() => {
+  function loadFavorites() {
     AsyncStorage.getItem("favorites").then((response) => {
       if (response) {
         const favoritedTeachers = JSON.parse(response);
@@ -34,13 +34,15 @@ function TeacherList() {
         setFavorites(favoritedTeachersIds);
       }
     });
-  }, []);
+  }
 
   function handlerToggleFuiltersVisible() {
     setIsFiltersVisible(!isFiltersVisible);
   }
 
   async function handleFiltersSubmit() {
+    loadFavorites();
+
     const response = await api.get("classes", {
       params: {
         subject,
