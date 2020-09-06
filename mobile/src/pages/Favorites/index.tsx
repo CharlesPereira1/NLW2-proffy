@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, ScrollView } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 
 import PageHeader from "../../components/PageHeader";
 
@@ -20,9 +21,9 @@ function Favorites() {
     });
   }
 
-  useEffect(() => {
+  useFocusEffect(() => {
     loadFavorites();
-  }, []);
+  });
 
   return (
     <View style={styles.container}>
